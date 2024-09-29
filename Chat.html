@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cyberkingfisher</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <header>
+      <h2 class="logo">Cyberkingfisher</h2>
+      <nav class="navigation">
+
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+ul {
+list-style: none;
+padding: 0;
+margin: 0;
+}
+
+.msg-list {
+position: relative;
+width: 600px;
+margin: 0 auto;
+}
+
+.msg-list ul {
+padding: 10px;
+min-height: 200px;
+max-height: 400px;
+/*超出部分出现滚动条*/
+overflow-y: auto;
+border: 1px solid #ddd;
+}
+
+.msg-list li {
+float: left;
+clear: both;
+margin: 10px 0;
+padding: 5px;
+line-height: 2;
+border-radius: 5px;
+background-color: #efefef;
+}
+
+.msg-list li.active {
+float: right;
+background-color: #58bc58;
+color: #fff;
+}
+
+.msg-list textarea {
+display: block;
+min-height: 50px;
+margin: 10px 0;
+width: 100%;
+box-sizing: border-box;
+}
+
+.status {
+display: none;
+position: absolute;
+left: 0;
+bottom: 0;
+right: 0;
+padding: 5px 10px;
+text-align: center;
+color: #999;
+}
+</style>
+<script>
+window.onload = function () {
+var auto = document.getElementById("auto");
+var dialog = auto.children[0];
+var texInput = auto.children[1];
+var but = auto.children[2];
+var status = auto.children[3];
+var arrq = ["你好", "你叫什么", "你几岁了", "你姓什么", "你来自哪里","首页","登录","12345","666666"];
+var arra = ["你好哇", "我是Cyberkingfisher", "我114514岁了", "我姓C", "我在宇宙里", "请返回", "输入你的用户名", "输入密码", "密码正确"];
+function creat() {
+var val = texInput.value.trim();
+if (val) {
+
+var li = document.createElement("li");
+li.innerHTML = val;
+li.className = "active";
+dialog.appendChild(li);
+dialog.scrollTop = dialog.scrollHeight - dialog.offsetHeight - 2;
+texInput.value = "";
+texInput.focus();
+
+status.style.display = "block";//显示div
+
+var atex = "";//创建一个字符串 接收回答
+var index = arrq.indexOf(val);//获取提问的问题在提问中数组的索引值
+if (index >= 0) {//判断提问的问题是否存在
+//存在
+atex = arra[index];//在回答数组中找到对应的索引值的数据并赋值给接收的字符串。
+}
+else {//不存在
+atex = "无法回复或审核未通过";
+}
+
+var ali = document.createElement("li");//创建节点 回答节点
+ali.innerHTML = atex; 
+
+setTimeout(function () {//延时1s回答 逼真 打字需要时间
+dialog.appendChild(ali);//插入节点
+status.style.display = "none";//隐藏div
+dialog.scrollTop = dialog.scrollHeight - dialog.offsetHeight - 2;//计算可视窗口需要滚动的距离。
+}, 1000);
+
+} else {//为空提示
+alert("内容不能为空！");
+}
+
+}
+but.onclick = function () {//按钮点击事件
+creat();
+}
+
+texInput.onkeydown = function (ev) {//键盘回车
+if (ev.keyCode == 13) {
+creat();
+}
+return false;//清除默认行为
+}
+
+}
+</script>
+</head>
+
+<body>
+<h1></h1>
+<div id="auto" class="msg-list">
+<ul>
+<!--<li>机器人</li>
+                <li class="active">我方</li>-->
+</ul>
+<textarea></textarea>
+<button>发送</button>
+<div class="status">对方正在输入...</div>
+</div>
+</body>
+
+</html>
